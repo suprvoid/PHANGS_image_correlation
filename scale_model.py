@@ -1,3 +1,4 @@
+
 import numpy as np
 import matplotlib.pyplot as plt
 import astropy.constants as s
@@ -111,7 +112,7 @@ class Scales_Model():
         return
 
     
-    def plot_allscales(self, measurements, uncertainty):
+    def plot_allscales(self, measurements, uncertainty, save=False):
 
         alp = 0.3
         siz = 5
@@ -124,11 +125,13 @@ class Scales_Model():
         plt.plot(self.lamb2d_rad, np.log10(self.lamb2d), marker='v', c='g', label='most unstable 2D', alpha=alp, markersize=siz)
         plt.plot(self.jean_rad, np.log10(self.jean), marker='v', c='r', label='Jeans length', alpha=alp, markersize=siz)
         plt.plot(self.toomre_rad, np.log10(self.toomre), marker='v', c='b', label='Toomre length', alpha=alp, markersize=siz)
-        plt.errorbar(measurements[1], np.log10(measurements[0]), xerr=None, yerr=errors, lw=1.6, fmt='X', c='k', label='measured scales', markersize=7)
+        plt.errorbar(measurements[1], np.log10(measurements[0]), xerr=None, yerr=errors, lw=0.6, fmt='X', c='k', label='measured scales', markersize=3)
         plt.ylabel('log \u03BB (pc)')
         plt.xlabel('Galactic radius (kpc)')
         plt.title(self.name)
         plt.legend(fontsize=8, loc='lower right')
+        if save:
+            plt.savefig(self.name+'_scales.svg', format='svg')
         plt.show()
         plt.style.use('default')
 

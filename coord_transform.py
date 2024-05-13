@@ -3,7 +3,7 @@ import astropy.units as u
 import astropy.coordinates as c
 
 
-class Galaxy:
+class GalaxyGeometry:
 
     def setpar(self, ra_in, dec_in, incl_in, PA_in, dist_in):
 
